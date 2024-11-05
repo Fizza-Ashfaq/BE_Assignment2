@@ -46,8 +46,8 @@ app.get("/getItembySearch",(req,res)=>{
 // Update method
 app.put("/updateItem/:id",(req,res)=>{
     const id=parseInt(req.params.id);
-    if(id>0 && id<obj.length) {
-        obj[id]={ ...obj[index], ...req.body };
+    if(id>0 && id<=obj.length) {
+        obj[id]=req.body ;
         res.json({array:obj});
     }
     else{
@@ -58,7 +58,7 @@ app.put("/updateItem/:id",(req,res)=>{
 //Delete method
 app.delete("/deleteItem/:id",(req,res)=>{
     const id=parseInt(req.params.id);
-    if(id>0 && id<obj.length) {
+    if(id>0 && id<=obj.length) {
         obj.splice(id,1);
         res.json({array:obj});
     }
