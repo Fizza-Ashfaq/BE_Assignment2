@@ -41,7 +41,32 @@ app.get("/getItembySearch",(req,res)=>{
     const search=req.query.name;
     const data=obj.find(p=>p.name==search);
     res.json({array:data});
-    })
+});
+
+// Update method
+app.put("/updateItem/:id",(req,res)=>{
+    const id=parseInt(req.params.id);
+    if(id>0 && id<obj.length) {
+        obj[id]={ ...obj[index], ...req.body };
+        res.json({array:obj});
+    }
+    else{
+        res.status(404).json({message:"Item not found"});
+    }
+    })   
+
+//Delete method
+app.delete("/deleteItem/:id",(req,res)=>{
+    const id=parseInt(req.params.id);
+    if(id>0 && id<obj.length) {
+        obj.splice(id,1);
+        res.json({array:obj});
+    }
+    else{
+        res.status(404).json({message:"Item not found"});
+    }
+ 
+})    
 
 const port=3000;
 app.listen(port,()=>
