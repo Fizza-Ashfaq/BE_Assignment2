@@ -15,3 +15,19 @@ const obj=[{
     city:"Los Angeles"
 }
 ];
+
+app.post("/addItems",(req, res)=>{
+    const data=req.body;
+    obj.push(data);
+    res.json({array:obj});
+})
+app.get("/getArray",(req,res)=>
+{
+    res.json(obj);
+})
+
+const port=3000;
+app.listen(port,()=>
+{
+    console.log(`Server is running on port ${port}`);
+});
